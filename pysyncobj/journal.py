@@ -80,9 +80,9 @@ class ResizableFile(object):
         currSize = self.__mm.size()
         if offset + size > self.__mm.size():
             try:
-                self.__mm.resize(int(self.__mm.size() * self.__resizeFactor))
+                self.__mm.resize(int((offset + size) * self.__resizeFactor))
             except SystemError:
-                self.__extand(int(self.__mm.size() * self.__resizeFactor) - currSize)
+                self.__extand(int((offset + size) * self.__resizeFactor) - currSize)
         self.__mm[offset:offset + size] = values
 
     def read(self, offset, size):
